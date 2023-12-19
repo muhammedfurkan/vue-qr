@@ -11,8 +11,7 @@
 
     <qrcode-stream :paused="paused" @detect="onDetect" @camera-on="onCameraOn" @camera-off="onCameraOff" @error="onError">
       <div v-show="showScanConfirmation" class="scan-confirmation">
-        <img src="../assets/checkmark.svg"
-        alt="Checkmark" width="128" />
+        <img src="../assets/checkmark.svg" alt="Checkmark" width="128" />
       </div>
     </qrcode-stream>
 
@@ -35,6 +34,7 @@
   margin-bottom: 20px;
   margin-top: 50px;
 }
+
 @media (max-width: 480px) {
   .qrcode {
     width: 100%;
@@ -57,8 +57,11 @@
 }
 </style>
 
+
+
 <script>
 import { QrcodeStream } from 'vue-qrcode-reader'
+import axios from 'axios'
 
 export default {
   components: {
@@ -94,10 +97,22 @@ export default {
         detectedCodes.map(code => code.rawValue)[0]
       )
 
-      console.log(this.result,"result")
+
+
+
+      const data  = await axios.post(`https://offismekan-dev-api.arneca.com/api/staticQRs/checkQRImage`, {
+        data: JSON.parse(this.result),
+        // headers: {
+        //   "Content-Type": "application/json"
+        // }
+      })
+      console.log(data, "data")
+
+
+      console.log(this.result, "result")
 
       this.paused = true
-      await this.timeout(50000)
+      await this.timeout(500)
       this.paused = false
     },
 
