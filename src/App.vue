@@ -1,15 +1,20 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+  <div style="margin-bottom: 20px; font-size: 20px; font-weight: bold; color: #2c3e50; text-align: center; margin-top: 20px; margin-bottom: 20px;">
+    Offismekan QR Code Scanner
+  </div>
+  <QrcodeStream />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+import QrcodeStream from './components/QrcodeStream.vue'
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    QrcodeStream
   }
 }
 </script>
